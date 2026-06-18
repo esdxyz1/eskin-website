@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="e-skin Displays, Inc. — Photonic Pigments, Graphene IR Sensors, Graphene Power, and Bio Sensors. Deep-tech structural color coatings and next-generation graphene devices." />
+  <title>e-skin Displays, Inc.</title>
+
+  <style>
+    /* ── Reset & base ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0a;
+      --surface:   #111111;
+      --surface2:  #161616;
+      --accent:    #00d4b4;
+      --accent2:   #00a896;
+      --text:      #e8e8e8;
+      --muted:     #888888;
+      --border:    rgba(0, 212, 180, 0.15);
+      --glow:      0 0 40px rgba(0, 212, 180, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont,
+                   'Segoe UI', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Typography ─────────────────────────────────────────────── */
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 600; letter-spacing: -0.01em; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
+    h4 { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+    p  { color: #c0c0c0; max-width: 68ch; }
+
+    a  { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #fff; }
+
+    /* ── Utility ────────────────────────────────────────────────── */
+    .accent   { color: var(--accent); }
+    .section  { padding: 96px 5vw; position: relative; }
+    .section--alt { background: var(--surface2); }
+
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.4;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── Navigation ─────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 5vw;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+
+    #nav.scrolled { padding: 10px 5vw; }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      width: 24px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5vw 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 50%, rgba(0,212,180,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,168,150,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 { margin-bottom: 24px; line-height: 1.15; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #999;
+      max-width: 50ch;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 4px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: #00ffda;
+      color: #000;
+      box-shadow: 0 0 24px rgba(0,212,180,0.4);
+    }
+
+    .hero-img-wrap {
+      position: relative;
+    }
+    .hero-img-wrap img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      filter: drop-shadow(0 20px 60px rgba(0,212,180,0.18));
+    }
+
+    /* stats bar */
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-lbl { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── Section headers ────────────────────────────────────────── */
+    .section-header { margin-bottom: 56px; }
+    .section-header h2 { margin-bottom: 16px; }
+    .section-header p { font-size: 1.05rem; }
+
+    /* ── Content grid ───────────────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .two-col.reverse { direction: rtl; }
+    .two-col.reverse > * { direction: ltr; }
+
+    .content-img {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feature-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: #c0c0c0;
+      font-size: 0.95rem;
+    }
+    .feature-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ── Image gallery / card grid ──────────────────────────────── */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .img-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      aspect-ratio: 4/3;
+    }
+    .img-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .img-card:hover img { transform: scale(1.04); }
+    .img-card-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 10px 14px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── Spec cards ─────────────────────────────────────────────── */
+    .spec-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .spec-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .spec-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+    .spec-card h4 { margin-bottom: 10px; }
+    .spec-card p { font-size: 0.9rem; color: #999; max-width: none; }
+
+    /* ── Application grid ───────────────────────────────────────── */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .app-item {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 3/2;
+    }
+    .app-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+      filter: brightness(0.75);
+    }
+    .app-item:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.9);
+    }
+    .app-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+      background: linear-gradient(transparent 40%, rgba(0,0,0,0.75));
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* ── Press / testimonials ───────────────────────────────────── */
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .press-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .press-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+    .press-logo {
+      height: 56px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      filter: brightness(0) invert(1) opacity(0.7);
+    }
+    .press-quote {
+      font-size: 0.95rem;
+      color: #bbb;
+      font-style: italic;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .press-source {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* institutions row */
+    .institutions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .institution {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .institution:hover {
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+    .institution img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+    }
+    .institution-name {
+      padding: 12px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── Contact ────────────────────────────────────────────────── */
+    #contact {
+      text-align: center;
+      padding: 120px 5vw;
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 100%, rgba(0,212,180,0.07) 0%, transparent 70%);
+    }
+    #contact h2 { margin-bottom: 16px; }
+    #contact p  { margin: 0 auto 40px; font-size: 1.05rem; }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 32px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer img { height: 28px; opacity: 0.7; }
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      max-width: none;
+    }
+
+    /* ── Scroll-reveal ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid, .two-col { grid-template-columns: 1fr; }
+      .two-col.reverse { direction: ltr; }
+      .hero-img-wrap { order: -1; }
+      .img-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { gap: 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 65px; left: 0; right: 0;
+        background: rgba(10,10,10,0.97);
+        padding: 24px 5vw 32px;
+        border-bottom: 1px solid var(--border);
+        gap: 20px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .img-grid { grid-template-columns: 1fr; }
+      .app-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ────────────────────────────────────────────── -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo" aria-label="e-skin Displays home">
+      <img src="images/logo.png" alt="e-skin Displays, Inc." />
+    </a>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#photonic-pigments">Photonic Pigments</a></li>
+      <li><a href="#graphene-sensors">Graphene Sensors</a></li>
+      <li><a href="#graphene-power">Graphene Power</a></li>
+      <li><a href="#bio-sensors">Bio Sensors</a></li>
+      <li><a href="#press">Press</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section id="hero" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid container">
+      <div>
+        <p class="hero-eyebrow">Deep-Tech Photonics &amp; Advanced Materials</p>
+        <h1>Coatings created from the world's first <em>Structural Color Photonic Pigments</em></h1>
+        <p class="hero-sub">
+          Ultra-light, non-toxic, energy-saving structural color coatings, paint, ink, and dye —
+          inspired by butterfly wings, engineered for the future.
+        </p>
+        <a href="#photonic-pigments" class="btn-primary">
+          Explore Technology
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">30°F</div>
+            <div class="stat-lbl">Passive surface cooling</div>
+          </div>
+          <div>
+            <div class="stat-num">100nm</div>
+            <div class="stat-lbl">Pigment thickness</div>
+          </div>
+          <div>
+            <div class="stat-num">100%</div>
+            <div class="stat-lbl">IR reflection</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-img-wrap reveal">
+        <img src="images/butterfly.webp" alt="Butterfly wing — structural color inspiration" />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Photonic Pigments ──────────────────────────────────────── -->
+  <section id="photonic-pigments" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Photonic Pigments</span>
+        <h2>Structural Color — <span class="accent">Never Fades, Never Pollutes</span></h2>
+        <p>
+          e-skin's photonic pigments are manufactured from just two materials: aluminum and an oxide.
+          Like butterfly wings and peacock feathers, they create color through nanostructure —
+          not chemistry — covering the full CYM color space with zero heavy metals or biocides.
+        </p>
+      </div>
+
+      <!-- Problem / Solution -->
+      <div class="two-col reveal">
+        <div>
+          <h4>The Problem</h4>
+          <h3 style="margin: 12px 0 16px;">Conventional paints are toxic and heat-absorbent</h3>
+          <p>
+            Contemporary paints contain heavy metals and biocides that pollute environments
+            and affect human health. Traditional pigments absorb heat and transfer it to
+            underlying layers — increasing cooling costs during peak summer electricity demand.
+          </p>
+          <ul class="feature-list">
+            <li>Heavy metals and biocides in every coat</li>
+            <li>Pigments fade with UV exposure over time</li>
+            <li>High thermal absorption increases HVAC load</li>
+            <li>Thick coatings add unwanted mass to aircraft &amp; vehicles</li>
+          </ul>
+        </div>
+        <div>
+          <img src="images/pigment-sample.png" alt="e-skin photonic pigment sample" class="content-img" />
+        </div>
+      </div>
+
+      <div style="height:56px"></div>
+
+      <!-- Solution -->
+      <div class="two-col reverse reveal">
+        <div>
+          <h4>The Solution</h4>
+          <h3 style="margin: 12px 0 16px;">Photonic coatings that cool, last forever, and weigh almost nothing</h3>
+          <p>
+            e-skin pigments reflect 100% of infrared radiation, cooling surfaces by up to
+            30 degrees Fahrenheit compared to conventional paint under identical heat exposure.
+            Individual pigments measure just 100 nanometers in thickness — a coat can be as
+            thin as 100 nm versus 10–100 microns for conventional paint.
+          </p>
+          <ul class="feature-list">
+            <li>Reflects 100% of IR radiation — proven passive cooling</li>
+            <li>Structural color never fades or loses brightness</li>
+            <li>1:1000 aspect ratio — aerospace ultralight performance</li>
+            <li>Two materials only: aluminum + oxide — non-toxic by design</li>
+            <li>Covers full CYM color gamut</li>
+          </ul>
+        </div>
+        <div>
+          <img src="images/color-gamut.png" alt="e-skin color gamut" class="content-img" />
+        </div>
+      </div>
+
+      <!-- Passive cooling callout -->
+      <div style="margin:56px 0;" class="reveal">
+        <div class="two-col">
+          <div>
+            <img src="images/passive-cooling.png" alt="Passive cooling demonstration — 30°F difference" class="content-img" />
+          </div>
+          <div>
+            <h4>Passive Cooling</h4>
+            <h3 style="margin: 12px 0 16px;">30°F cooler — with zero energy cost</h3>
+            <p>
+              Side-by-side thermal imaging demonstrates a 30-degree Fahrenheit temperature
+              difference between surfaces coated with conventional commercial paint versus
+              e-skin photonic pigments — under identical solar heat exposure conditions.
+            </p>
+            <p style="margin-top:16px;">
+              This passive cooling effect directly reduces HVAC and air-conditioning load,
+              cutting peak summer electricity demand for buildings, vehicles, and infrastructure.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ultralight -->
+      <div class="reveal">
+        <div class="two-col reverse">
+          <div>
+            <h4>Aerospace &amp; Defense</h4>
+            <h3 style="margin: 12px 0 16px;">Boeing-grade ultralight paint</h3>
+            <p>
+              At 100 nm per coat, e-skin photonic coatings offer a dramatic weight reduction
+              over conventional aircraft paint. Every pound saved in aerospace directly translates
+              to reduced fuel consumption and increased payload capacity.
+            </p>
+          </div>
+          <div>
+            <img src="images/boeing-ultralight.png" alt="Boeing ultralight paint application" class="content-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Application methods -->
+      <div style="margin-top:64px;" class="reveal">
+        <h4>Application Methods</h4>
+        <h3 style="margin: 12px 0 24px;">Two pathways to structural color</h3>
+        <div class="img-grid">
+          <div class="img-card">
+            <img src="images/direct-coating.png" alt="Direct PVD coating" />
+            <div class="img-card-label">Direct Coating — PVD</div>
+          </div>
+          <div class="img-card">
+            <img src="images/direct-coating-2.jpg" alt="Direct coating process" />
+            <div class="img-card-label">Direct Coating — Detail</div>
+          </div>
+          <div class="img-card">
+            <img src="images/spray-paint-1.png" alt="Spray paint application 1" />
+            <div class="img-card-label">Spray Paint — Mixed with Resin</div>
+          </div>
+          <div class="img-card">
+            <img src="images/spray-paint-2.png" alt="Spray paint application 2" />
+            <div class="img-card-label">Spray Application</div>
+          </div>
+          <div class="img-card">
+            <img src="images/spray-paint-3.png" alt="Spray paint application 3" />
+            <div class="img-card-label">Color Output</div>
+          </div>
+          <div class="img-card">
+            <img src="images/butterfly.webp" alt="Butterfly structural color reference" />
+            <div class="img-card-label">Nature's Blueprint</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Graphene Sensors ───────────────────────────────────────── -->
+  <section id="graphene-sensors" class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Graphene Sensors</span>
+        <h2>Graphene IR Sensor — <span class="accent">Room Temperature, Uncooled</span></h2>
+        <p>
+          A revolutionary graphene-based infrared sensor chip that operates at room temperature
+          without requiring external cooling systems — dramatically reducing size, weight, power,
+          and cost versus traditional cryogenically cooled IR cameras.
+        </p>
+      </div>
+
+      <div class="two-col reveal">
+        <div>
+          <img src="images/graphene-sensor-chip.webp" alt="Graphene IR Sensor Chip" class="content-img" />
+        </div>
+        <div>
+          <h4>Core Technology</h4>
+          <h3 style="margin: 12px 0 16px;">Uncooled IR detection at room temperature</h3>
+          <p>
+            Traditional infrared cameras require bulky, expensive cryogenic cooling systems to
+            operate. e-skin's graphene IR sensor chip delivers high-sensitivity long-wavelength
+            infrared (LWIR) imaging at room temperature — opening IR sensing to platforms
+            where cooling is impractical.
+          </p>
+          <ul class="feature-list">
+            <li>Room-temperature operation — no cryogenic cooling required</li>
+            <li>LWIR (long-wavelength infrared) sensitivity</li>
+            <li>Atom-thick graphene sensing layer</li>
+            <li>Multispectral detection capability</li>
+            <li>Suitable for integration into compact, power-constrained platforms</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="height:56px"></div>
+
+      <div class="two-col reverse reveal">
+        <div>
+          <h4>LWIR Imaging</h4>
+          <h3 style="margin: 12px 0 16px;">High-fidelity thermal imaging</h3>
+          <p>
+            The graphene sensor delivers detailed long-wavelength infrared imagery across
+            a wide range of environments — from precision industrial inspection to
+            wide-area surveillance and environmental monitoring.
+          </p>
+        </div>
+        <div>
+          <img src="images/lwir-imaging.jpg" alt="LWIR thermal imaging" class="content-img" />
+        </div>
+      </div>
+
+      <!-- Application areas -->
+      <div style="margin-top:64px;" class="reveal">
+        <h4>Application Areas</h4>
+        <h3 style="margin: 12px 0 8px;">Designed for the most demanding environments</h3>
+        <div class="app-grid">
+          <div class="app-item">
+            <img src="images/military.webp" alt="Military applications" />
+            <div class="app-label">Military &amp; Defense</div>
+          </div>
+          <div class="app-item">
+            <img src="images/uav.webp" alt="UAV seek and detect" />
+            <div class="app-label">UAV Seek &amp; Detect</div>
+          </div>
+          <div class="app-item">
+            <img src="images/autonomous-vehicles.webp" alt="Autonomous vehicles" />
+            <div class="app-label">Autonomous Vehicles</div>
+          </div>
+          <div class="app-item">
+            <img src="images/multispectral.webp" alt="Multispectral imaging" />
+            <div class="app-label">Multispectral</div>
+          </div>
+          <div class="app-item">
+            <img src="images/remote-sensing.webp" alt="Remote sensing" />
+            <div class="app-label">Remote Sensing</div>
+          </div>
+          <div class="app-item">
+            <img src="images/environmental.webp" alt="Environmental monitoring" />
+            <div class="app-label">Environmental Monitoring</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:48px;" class="reveal">
+        <img src="images/graphene-sensor-2.png" alt="Graphene sensor array detail" class="content-img" style="max-height:400px; object-fit:cover;" />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Graphene Power ─────────────────────────────────────────── -->
+  <section id="graphene-power" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Graphene Power</span>
+        <h2>Graphene Cell — <span class="accent">Converts Heat to Electricity</span></h2>
+        <p>
+          A graphene-based thermoelectric cell that harvests waste heat from industrial sources
+          and converts it directly to electricity — with an atom-thick active layer that makes
+          panels extraordinarily thin, lightweight, and scalable.
+        </p>
+      </div>
+
+      <div class="spec-cards reveal">
+        <div class="spec-card">
+          <h4>Waste Heat Recovery</h4>
+          <p>Captures thermal energy from industrial turbines, steam generators, and AI data centers that would otherwise be lost to the environment.</p>
+        </div>
+        <div class="spec-card">
+          <h4>Atom-Thick Panels</h4>
+          <p>Graphene is a single atom thick — enabling panels that are extraordinarily thin and lightweight compared to any competing thermoelectric technology.</p>
+        </div>
+        <div class="spec-card">
+          <h4>Series / Parallel Config</h4>
+          <p>Cells and panels connect in series or parallel, just like solar panels, allowing flexible power output scaling to match any application requirement.</p>
+        </div>
+        <div class="spec-card">
+          <h4>AI Data Centers</h4>
+          <p>Purpose-built for the massive waste heat output of modern AI compute infrastructure — turning a cooling liability into a power generation asset.</p>
+        </div>
+      </div>
+
+      <div style="height:56px"></div>
+
+      <div class="two-col reveal">
+        <div>
+          <h4>How It Works</h4>
+          <h3 style="margin:12px 0 16px;">Thermoelectric conversion at the atomic scale</h3>
+          <p>
+            e-skin's graphene power cells exploit the Seebeck effect — converting a temperature
+            differential directly into electrical current. Because graphene is an atom thick,
+            the resulting panels are extremely thin while maintaining high thermoelectric efficiency.
+          </p>
+          <p style="margin-top:16px;">
+            Panels can be tiled and interconnected in series or parallel configurations —
+            analogous to solar panels — to scale from milliwatt IoT harvesting to kilowatt
+            industrial recovery systems.
+          </p>
+          <ul class="feature-list" style="margin-top:24px;">
+            <li>Industrial turbines and steam generation</li>
+            <li>AI &amp; HPC data center thermal management</li>
+            <li>Building and infrastructure HVAC waste heat</li>
+            <li>Modular, scalable panel architecture</li>
+          </ul>
+        </div>
+        <div>
+          <!-- decorative schematic placeholder using CSS art -->
+          <div style="
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            min-height: 280px;
+          ">
+            <div style="font-size:3rem;">⚡</div>
+            <div style="text-align:center;">
+              <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Heat → Electricity</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--text);">Graphene Thermoelectric Cell</div>
+              <div style="font-size:0.85rem;color:var(--muted);margin-top:8px;">Atom-thick · Scalable · Zero emissions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Bio Sensors ────────────────────────────────────────────── -->
+  <section id="bio-sensors" class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Bio Sensors</span>
+        <h2>Smartphone Bio Sensor — <span class="accent">Dopamine, Serotonin &amp; Beyond</span></h2>
+        <p>
+          A graphene-based biosensor that measures dopamine, serotonin, and other biomolecules
+          in blood — using a smartphone as the interface. Bringing clinical-grade neurochemical
+          analysis to the point of care.
+        </p>
+      </div>
+
+      <div class="two-col reveal">
+        <div>
+          <h4>Core Capability</h4>
+          <h3 style="margin:12px 0 16px;">Lab-grade biomolecule detection in your pocket</h3>
+          <p>
+            e-skin's biosensor leverages the extraordinary electrochemical sensitivity of
+            graphene to detect neurotransmitters and biological markers at concentrations
+            relevant to human health — directly from a blood sample.
+          </p>
+          <ul class="feature-list">
+            <li>Dopamine and serotonin quantification</li>
+            <li>Biomolecule detection in blood</li>
+            <li>Smartphone-integrated readout — no lab equipment required</li>
+            <li>Graphene electrochemical sensing layer</li>
+            <li>Point-of-care and remote diagnostics applications</li>
+          </ul>
+        </div>
+        <div>
+          <div style="
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 48px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            min-height: 300px;
+            text-align: center;
+          ">
+            <div style="font-size:3rem;">🧬</div>
+            <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">Graphene Bio Sensor</div>
+            <div style="font-size:1.2rem;font-weight:700;color:var(--text);">Blood → Smartphone → Result</div>
+            <div style="font-size:0.85rem;color:var(--muted);">Dopamine · Serotonin · Biomolecules</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:56px;" class="reveal">
+        <div class="spec-cards">
+          <div class="spec-card">
+            <h4>Neurotransmitters</h4>
+            <p>Precision electrochemical detection of dopamine and serotonin — key markers for neurological and mental health diagnostics.</p>
+          </div>
+          <div class="spec-card">
+            <h4>Smartphone Interface</h4>
+            <p>Results delivered directly to a smartphone — enabling point-of-care diagnostics without laboratory infrastructure.</p>
+          </div>
+          <div class="spec-card">
+            <h4>Graphene Electrode</h4>
+            <p>Atom-thick graphene sensing surface provides ultra-high electrochemical sensitivity and selectivity at the molecular level.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Press & Testimonials ──────────────────────────────────── -->
+  <section id="press" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Press &amp; Recognition</span>
+        <h2>Validated by Science, <span class="accent">Recognized Worldwide</span></h2>
+        <p>
+          e-skin Displays' photonic pigment research has been published in peer-reviewed journals
+          and featured by leading science and technology media globally.
+        </p>
+      </div>
+
+      <div class="press-grid reveal">
+        <div class="press-card">
+          <img src="images/science-advances.png" alt="Science Advances" class="press-logo" />
+          <p class="press-quote">
+            "Ultralight plasmonic structural color paint" — peer-reviewed research demonstrating
+            the world's lightest structural color coating.
+          </p>
+          <span class="press-source">Science Advances · March 5, 2023</span>
+        </div>
+
+        <div class="press-card">
+          <div style="font-size:1.4rem;font-weight:900;color:#fff;letter-spacing:-0.02em;">Forbes</div>
+          <p class="press-quote">
+            "Butterflies Inspire Paint Without Pigments" — covering e-skin's breakthrough
+            nature-inspired structural color technology.
+          </p>
+          <span class="press-source">Forbes · March 21, 2023</span>
+        </div>
+
+        <div class="press-card">
+          <div style="font-size:1.2rem;font-weight:900;color:#fff;letter-spacing:0.02em;">WIRED</div>
+          <p class="press-quote">
+            "This Is the Lightest Paint in the World" — feature coverage of e-skin's
+            100-nanometer photonic coating and its implications for aerospace and design.
+          </p>
+          <span class="press-source">WIRED · March 22, 2023</span>
+        </div>
+
+        <div class="press-card">
+          <div style="font-size:1rem;font-weight:800;color:#fff;letter-spacing:0.06em;text-transform:uppercase;">NSF</div>
+          <p class="press-quote">
+            Featured in NSF News highlighting the scientific significance of structural color
+            photonic pigments developed at e-skin Displays.
+          </p>
+          <span class="press-source">National Science Foundation · 2023</span>
+        </div>
+      </div>
+
+      <!-- Institutional Recognition -->
+      <div style="margin-top:64px;" class="reveal">
+        <h4>Institutional Recognition</h4>
+        <h3 style="margin:12px 0 8px;">From Stuttgart to Paris to Cambridge</h3>
+        <div class="institutions">
+          <div class="institution">
+            <img src="images/fraunhofer.png" alt="Fraunhofer Institute" />
+            <div class="institution-name">Fraunhofer Institute</div>
+          </div>
+          <div class="institution">
+            <img src="images/harvard.jpg" alt="Harvard Art Museum" />
+            <div class="institution-name">Harvard Art Museum</div>
+          </div>
+          <div class="institution">
+            <img src="images/louvre.png" alt="Louvre Museum, Paris" />
+            <div class="institution-name">Louvre Museum, Paris</div>
+          </div>
+          <div class="institution">
+            <img src="images/forbes-pigment.png" alt="Forbes Pigment Collection" />
+            <div class="institution-name">Forbes Pigment Collection</div>
+          </div>
+        </div>
+        <p style="margin-top:20px;font-size:0.9rem;">
+          e-skin pigment samples are displayed at the <strong style="color:#fff;">Harvard Art Museum</strong>,
+          referenced at the <strong style="color:#fff;">Louvre Museum</strong> in Paris, preserved in the
+          <strong style="color:#fff;">Forbes Pigment Collection</strong>, and endorsed by the
+          <strong style="color:#fff;">Fraunhofer Institute</strong> in Stuttgart, Germany.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Contact ───────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <span class="tag reveal">Contact</span>
+      <h2 class="reveal">Ready to explore a partnership?</h2>
+      <p class="reveal">
+        Whether you're interested in photonic coatings, graphene sensors, power harvesting,
+        or biosensing — we'd like to hear from you.
+      </p>
+      <a href="https://www.eskindisplays.com/contact-3" class="btn-primary reveal" target="_blank" rel="noopener">
+        Get in Touch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <img src="images/logo.png" alt="e-skin Displays, Inc." />
+    <p>Copyright &copy; 2024 e-skin Displays, Inc. All rights reserved.</p>
+    <p><a href="https://www.eskindisplays.com" target="_blank" rel="noopener">eskindisplays.com</a></p>
+  </footer>
+
+  <!-- ── JavaScript ────────────────────────────────────────────── -->
+  <script>
+    // Shrink nav on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('nav-toggle');
+    const links  = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => links.classList.remove('open'));
+    });
+
+    // Scroll-reveal via IntersectionObserver
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
